@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo"><img src="images/logo4.png" alt="" /></div>
+
+        <nav class="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/service.html">Service</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <div class="right-icons">
+            <div id="menu-bars" class="fas fa-bars"></div>
+            <a href="/location.html">
+                <div class="btn">Locate Us</div>
+            </a>
+        </div>
+    </header>
+    <!-- Header Ends -->
+    <div class="service-home">
+        <div class="service">
+            <div class="service-left-content">
+                <div class="container">
+                    <form
+                        action="https://script.google.com/macros/s/AKfycbxzi5t27c1ooCxaO5tJroDBsw4NB9l-OdPCPJI7T8iuwcfr21m3qwa1TLSibcmejVLKFw/exec"
+                        method="post" name="contact-form" id="contact-form">
+                        <h1>Contact Us</h1>
+                        <label for="Name">Name:</label>
+                        <input type="text" name="your-name" id="Name" placeholder="Enter your name" style="width: 100%;
+                        padding: 10px;
+                        margin-bottom: 10px;border: 1px solid black;">
+                        <label for="Mobile">Mobile Number</label>
+                        <input type="tel" name="number" id="Number" required pattern="[0-9]{10}"
+                            placeholder="Enter your number" style="width: 100%;
+                            padding: 10px;
+                            margin-bottom: 10px;border: 1px solid black;">
+                        <label for="Email">Email</label>
+                        <input type="email" name="email" id="Email" placeholder="Enter your mail" style="width: 100%;
+                        padding: 10px;
+                        margin-bottom: 10px;border: 1px solid black;">
+                        <label for="text">Enter Your Message Here:</label>
+
+                        <textarea name="message" id="Msg" cols="30" rows="10" placeholder="Place your message" style="width: 100%;
+                            padding: 10px;border: 1px solid black;"></textarea>
+                        <input type="Submit" value="Submit" id="Submit" style=" background-color: #4CAF50;
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        cursor: pointer;
+                        margin-top: 10px;border: 1px solid black;">
+                    </form>
+                </div>
+            </div>
+
+            <div class="service-right-content">
+                <img src="images/img-06.png" alt="" style="height: 100%; width: 100%; padding-top: 150px" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Previous Code -->
+    <!-- <div class="container">
+        <form
+            action="https://script.google.com/macros/s/AKfycbxzi5t27c1ooCxaO5tJroDBsw4NB9l-OdPCPJI7T8iuwcfr21m3qwa1TLSibcmejVLKFw/exec"
+            method="post" name="contact-form" id="contact-form">
+            <h2>Contact Us</h2>
+            <input type="text" name="your-name" id="Name" placeholder="Enter your name">
+            <input type="tel" name="number" id="Number" required pattern="[0-9]{10}" placeholder="Enter your number">
+            <input type="email" name="email" id="Email" placeholder="Enter your mail">
+            <textarea name="message" id="Msg" cols="30" rows="10" placeholder="Place your message"></textarea>
+            <input type="Submit" value="Submit" id="Submit">
+        </form>
+    </div> -->
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxzi5t27c1ooCxaO5tJroDBsw4NB9l-OdPCPJI7T8iuwcfr21m3qwa1TLSibcmejVLKFw/exec';
+
+        const form = document.getElementById('contact-form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Thank you! Your form is submitted successfully. We will contact you soon!',
+                        }).then(() => {
+                            form.reset(); // Optionally, reset the form fields after successful submission
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Error submitting the form. Please try again later.',
+                        });
+                    }
+                })
+                .catch(error => console.error('Error!', error.message));
+        });
+
+    </script>
+</body>
+
+</html>
